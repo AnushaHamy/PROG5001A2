@@ -1,14 +1,14 @@
 /**
  * Class Prey represents any prey object.
  *
- * @author 
- * @version
+ * @author Anusha Hamy
+ * @version 1.0
  */
-public class Prey {
+public class AH_Prey {
     /**
      * Constructor for objects of class Prey
      */
-    public Prey()
+    public AH_Prey()
     {
     }    
 }

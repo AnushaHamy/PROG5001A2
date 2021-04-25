@@ -1,14 +1,15 @@
 /**
  * Write a description of class Player here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Anusha Hamy)
+ * @version (version 1 or a 25/03/2021)
  */
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Collections;
 
-public class PlayerList
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+
+public class AH_PlayerList
 {
     // list of player objects
     private ArrayList<Player> playerList;
@@ -16,9 +17,13 @@ public class PlayerList
     /**
      * Constructor for objects of class Player
      */
-    public PlayerList() {
+    public AH_PlayerList() {
         // initialise the player list
+        
         playerList = new ArrayList<>();
+        
+  
+ 
     }
 
     /**
@@ -38,56 +43,43 @@ public class PlayerList
      */
     public void sort(char direction) {
         //modify this method to makes it works as expected
-        if (direction == 'A') {
-            //sort the list in ascending order
-            Collections.sort(playerList);
-        } else if (direction == 'D')        
-        {
-            //sort the list in descending order
-            Collections.sort(playerList, Collections.reverseOrder());
-        }
-    }
-
-    /**
-     * Method to match a player in the list with a given name and password
-     * @param name, password
-     * @return true if matched and false if not
-     */
-    public boolean matchPlayer(String name, String password) {
-        boolean match;
-        match = false;
+        if(direction == 'A')
+          Collections.sort(playerList);
         
-        Iterator<Player> iter = playerList.iterator();
-        while (iter.hasNext()) {
-            Player player = iter.next();
-            if ((player.name.compareTo(name)==0) && (player.password.compareTo(password)==0)) {
-               match = true;
-               break;
+        else
+        if(direction == 'D')
+          Collections.sort(playerList, Collections.reverseOrder());
+    }
+    
+    public boolean matchPlayer(String name, String password) {
+        boolean match = false;
+
+        for (int i = 0; i < playerList.size(); i++) {
+            Player p = playerList.get(i);
+            if ((p.name.compareTo(name) == 0) && (p.password.compareTo(password) == 0)) {
+                match = true;
+                break; //a new command to break a loop
             }
-        }        
+        }
         
         return match;
+        
     }
     
     /**
      * Method to convert the PlayerList to a string
      * @params none
-     * @return a string that represents all players in the list
+     * @return none
      */
     @Override
     public String toString() {
         //modify this method to makes it works as expected
-        String s = "";
-        /*
-        for (int i = 0; i < playerList.size(); i++) {
-            Player player = playerList.get(i);
-                s = s + player.toString() + "\n";
-        }
-        */
-        Iterator<Player> iter = playerList.iterator();
-        while (iter.hasNext()) {
-            Player player = iter.next();
-            s = s + player.toString() + "\n";
+        String s =  "";
+        Iterator<Player> itera = playerList.iterator();
+        while (itera.hasNext()){
+           Player p = itera.next();
+           
+           s =s + p.toString() + "\n";
         }
         return s;
     }
@@ -114,4 +106,20 @@ public class PlayerList
             return this.name.compareTo(p.name);
         }
     }
+
+    /**
+    */
+   /*
+    public static void main(String[] args) {
+        AH_PlayerList playerList = new AH_PlayerList();
+
+   
+        //before sorting
+        System.out.println("List before sorting: \n" + playerList);
+        //sorting
+        playerList.sort('D');
+        //after sorting
+        System.out.println("List after sorting: \n" + playerList);
+    }
+    */
 }
