@@ -4,9 +4,9 @@ Tell the reader (someone who does not know anything about this project)
 all he/she needs to know. The comments should usually include at least:
 ------------------------------------------------------------------------
 
-PROJECT TITLE:Snake Game
-PURPOSE OF PROJECT: Assignment 2
+PROJECT TITLE: The Snake Game
+PURPOSE OF PROJECT: Assignment 2 Weekly task 1 - Week 8
 VERSION : 1.0
 HOW TO START THIS PROJECT: run the login form
-AUTHORS:Anusha Hamy
-USER INSTRUCTIONS: Enter the username & password
+AUTHORS:Anusha Hamy - 23594256
+USER INSTRUCTIONS: Enter the username & password 

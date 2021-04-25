@@ -16,14 +16,13 @@ public class AH_SnakeGame extends JFrame {
     }
 
         private void initUI() {
-        
-        //AH_LoginForm();
-        AH_LoginForm loginForm = new AH_LoginForm();
-        loginForm.setVisible(true);
+           //AH_LoginForm();
+     
+     
         //add(new AH_LoginForm());      
         setResizable(false);
         pack();
-        loginForm.setTitle("Anusha Hamy");
+        
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -40,9 +39,11 @@ public class AH_SnakeGame extends JFrame {
     public static void main(String[] args) {    
         
         EventQueue.invokeLater(() -> {
-            //create the game with a game title as follow: The Snake Game (C) Your_Name
-            JFrame sgame = new AH_SnakeGame();
-            sgame.setVisible(true);
+        //create the game with a game title as follow: The Snake Game (C) Your_Name
+        AH_LoginForm loginForm = new AH_LoginForm();
+        loginForm.setVisible(true);
+        loginForm.setTitle("The Snake Game (C) Anusha_Hamy");
+
         });
     }
 
