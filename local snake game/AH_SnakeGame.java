@@ -8,25 +8,7 @@ import javax.swing.JFrame;
 public class AH_SnakeGame extends JFrame {
     
     private AH_LoginForm loginForm;
-    
-    public AH_SnakeGame(){
-    
-     initUI();
-    
-    }
 
-        private void initUI() {
-           //AH_LoginForm();
-     
-     
-        //add(new AH_LoginForm());      
-        setResizable(false);
-        pack();
-        
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-    
     public AH_SnakeGame(String gameTille) {        
         setTitle(gameTille);
         setResizable(false);

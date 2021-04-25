@@ -1,12 +1,8 @@
 #BlueJ class context
 comment0.target=AH_SnakeGame
 comment0.text=\r\n\ @author\ Anusha\ Hamy\r\n\ @Version\ 1.0\r\n
-comment1.params=
-comment1.target=AH_SnakeGame()
-comment2.params=
-comment2.target=void\ initUI()
-comment3.params=gameTille
-comment3.target=AH_SnakeGame(java.lang.String)
-comment4.params=args
-comment4.target=void\ main(java.lang.String[])
-numComments=5
+comment1.params=gameTille
+comment1.target=AH_SnakeGame(java.lang.String)
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+numComments=3
