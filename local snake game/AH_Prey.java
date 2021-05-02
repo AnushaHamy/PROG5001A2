@@ -10,5 +10,16 @@ public class AH_Prey {
      */
     public AH_Prey()
     {
-    }    
+    }   
+    
+    /**
+     * load prey random in board
+     */
+    public void addPreyRandom(){
+    
+    }
+    
+   
 }
+
+

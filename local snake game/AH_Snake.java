@@ -13,4 +13,24 @@ public class AH_Snake
         // initialise instance variables        
     }
 
+    /**
+     * Snake grow
+     */
+    public void grow(){
+    
+    }
+    
+    /**
+     * snake move
+     */
+    public void move(){
+    
+    }
+    
+    /**
+     * Check snake is collide with wall
+     */
+    public void checkCollision(){
+    
+    }
 }

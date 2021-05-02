@@ -15,7 +15,6 @@ public class AH_GameBoard extends JPanel {
     Color color;  
      
     public AH_GameBoard() {
-        
         setPreferredSize(new Dimension(xcells * szcell, ycells * szcell));        
         setBackground(color.black);
         setFocusable(true);        
@@ -26,4 +25,10 @@ public class AH_GameBoard extends JPanel {
         super.paintComponent(g);
     }
     
+     /**
+     * load random apple to board
+     */
+    public void loadRandomApple(){
+    
+    }
 }

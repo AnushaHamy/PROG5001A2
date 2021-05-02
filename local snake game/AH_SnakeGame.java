@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 public class AH_SnakeGame extends JFrame {
     
     private AH_LoginForm loginForm;
+    private AH_Snake snake;
+    private AH_GameBoard board;
 
     public AH_SnakeGame(String gameTille) {        
         setTitle(gameTille);
@@ -29,4 +31,25 @@ public class AH_SnakeGame extends JFrame {
         });
     }
 
+     /**
+     * load snake to board
+     */
+    public void setSnake(){
+    
+    }
+    
+    /**
+     * Get moving directons of snake
+     */
+    public void setDirection(){
+    
+    }
+    
+    
+     /**
+     * set game over if snake hit the wall
+     */
+    public void setGameOver(){
+    
+    }
 }
