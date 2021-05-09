@@ -130,6 +130,9 @@ public class AH_LoginForm extends JFrame implements ActionListener{
         boolean matched = playerList.matchPlayer(username, password);
         if(matched){
           JOptionPane.showMessageDialog(null, "Login Successful");
+          AH_SnakeGame board = new AH_SnakeGame();
+          //board.LayoutManagers();
+          board.setVisible(true);
 
         }else{
         JOptionPane.showMessageDialog(null, "Username / password does not match");
