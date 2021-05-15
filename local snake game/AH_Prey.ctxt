@@ -1,16 +1,10 @@
 #BlueJ class context
 comment0.target=AH_Prey
-comment0.text=\r\n\ Class\ Prey\ represents\ any\ prey\ object.\r\n\r\n\ @author\ Anusha\ Hamy\r\n\ @version\ 4.0\r\n
+comment0.text=\r\n\ Class\ Prey\ represents\ any\ prey\ object.\r\n\r\n\ @author\ Anusha\ Hamy\r\n\ @version\ 1.0\r\n
 comment1.params=
 comment1.target=AH_Prey()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Prey\r\n
 comment2.params=
 comment2.target=void\ addPreyRandom()
 comment2.text=\r\n\ load\ prey\ random\ in\ board\r\n
-comment3.params=
-comment3.target=void\ locatePrey()
-comment3.text=\r\n\ locate\ the\ prey\ in\ random\ location\r\n
-comment4.params=g
-comment4.target=void\ doDrawing(java.awt.Graphics)
-comment4.text=\r\n\ load\ prey\ random\ in\ board\r\n
-numComments=5
+numComments=3

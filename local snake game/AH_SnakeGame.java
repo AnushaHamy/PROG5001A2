@@ -10,13 +10,13 @@ import javax.swing.ImageIcon;
 
 /**
  * @author Anusha Hamy
- * @Version 4.0
+ * @Version 1.0
  */
 
 public class AH_SnakeGame extends JFrame {
     
     private AH_LoginForm loginForm;
-    //private AH_Snake snake;
+    private AH_Snake snake;
     private AH_GameBoard board;
     private JLabel labelTopScore; 
     private JLabel labelCurrentScore; 
@@ -28,9 +28,7 @@ public class AH_SnakeGame extends JFrame {
     public AH_SnakeGame() {        
         LayoutManagers();
         setTitle("My Snake Game © Anusha_Hamy");
-        setSize(800,500);
-        setResizable(false); 
-        pack();
+        setResizable(false);    
         
     }
     
@@ -48,88 +46,74 @@ public class AH_SnakeGame extends JFrame {
     }
 
     public void LayoutManagers(){
-         
+    
+               
         labelTopScore = new JLabel("Top Player's Score "); 
         labelCurrentScore = new JLabel("Current Players Score ");
-        labelname = new JLabel("PROG5001:"+ '\n'+" 2021 name: Anusha");//
+        labelname = new JLabel("PROG5001: 2021"+ '\n'+"Name: Anusha");
         imageSnake = new ImageIcon ("images/snake.jpg");
         labelimg = new JLabel (imageSnake);
         buttonQuit = new JButton("Quit");
-    
-        //AH_SnakeGame Game = new AH_SnakeGame();
         
-        //Color color;
-        JPanel SnakeGame = new JPanel();
+        
+        
         //add game to panel;
         AH_GameBoard board = new AH_GameBoard();
-      
+        
         // create a new panel with GridBagLayout manager 
-        GridBagLayout layout = new GridBagLayout();
-        SnakeGame.setLayout(layout);
+        JPanel SnakeGame = new JPanel(new GridBagLayout()); 
+        
         // use GridBagConstraints to control the grid appearance 
         GridBagConstraints constraints = new GridBagConstraints(); 
-        //board.setSize(200,150);
-        constraints.gridx=0;
-        constraints.gridy=0;
-        //board.setSize(800,600);
-        constraints.gridwidth = 6;
-        constraints.gridheight= 9;
-        constraints.fill = GridBagConstraints.BOTH;
+        
+        // add components to the panel 
+        
+        board.setSize(400,300);
+        constraints.gridx=1;
+        constraints.gridy=1;
         SnakeGame.add(board, constraints);
         
-
-
-        //constraints.fill = GridBagConstraints.VERTICAL;
-        //constraints.fill = GridBagConstraints.HORIZONTAL;
-         constraints.gridx=9;
-         constraints.gridy=1;
-        constraints.gridheight=1;
-        constraints.gridwidth = 2;
-        //constraints.insets = new Insets(0,2,0,0);
-        //constraints.anchor = GridBagConstraints.CENTER;
-      
-        SnakeGame.add(labelTopScore,constraints);
+        constraints.fill = GridBagConstraints.VERTICAL;
+        constraints.weightx=10;
+        constraints.ipady=1;
+        constraints.gridx = 2; 
+        constraints.gridy = 0;      
+        SnakeGame.add(labelTopScore, constraints);
         
-
-        
-        //constraints.fill = GridBagConstraints.VERTICAL;
-        //constraints.anchor = GridBagConstraints.LINE_START;
-        constraints.anchor = GridBagConstraints.CENTER;
-        constraints.gridx = 9; 
-        constraints.gridy = 2; 
-        constraints.gridheight=1;
-        constraints.gridwidth = 2;
-        //constraints.weightx = 0.2;
-        constraints.weighty = 0.1;
+        constraints.fill = GridBagConstraints.VERTICAL;
+        //constraints.weightx=50;
+        constraints.gridx = 2; 
+        constraints.gridy = 2;      
         SnakeGame.add(labelCurrentScore, constraints);
         
-        //constraints.fill = GridBagConstraints.LAST_LINE_END;
-        constraints.gridx = 9; 
-        constraints.gridy = 3;      
+        constraints.fill = GridBagConstraints.VERTICAL;
+        //constraints.weightx=20;
+        //constraints.gridwidth=40;
+        constraints.gridx = 2; 
+        constraints.gridy = 1;      
         SnakeGame.add(labelimg, constraints);
         
-        constraints.anchor = GridBagConstraints.CENTER;
-        constraints.gridx = 9; 
-        constraints.gridy = 5;   
-        constraints.gridheight=1;
-        constraints.gridwidth = 4;
+        constraints.fill = GridBagConstraints.VERTICAL;
+        //constraints.weightx=20;
+        //constraints.gridwidth=40;
+        constraints.gridx = 2; 
+        constraints.gridy = 3;      
         SnakeGame.add(labelname, constraints);
         
-        //constraints.fill = GridBagConstraints.VERTICAL;
-     
-        //constraints.fill = GridBagConstraints.VERTICAL;
-        // // //constraints.weightx=50;
-        constraints.anchor = GridBagConstraints.CENTER;
-        constraints.gridx = 9; 
-        constraints.gridy = 8;  
-        constraints.gridheight=1;
-        constraints.gridwidth = 4;
+        
+        
+        constraints.fill = GridBagConstraints.VERTICAL;
+        //constraints.weightx=50;
+        constraints.gridx = 2; 
+        constraints.gridy = 4;      
         SnakeGame.add(buttonQuit, constraints);
         
-        //add the panel to this frame 
-  
-        add(SnakeGame);
-        pack();
+        // add the panel to this frame 
+        add(SnakeGame); 
+        //SnakeGame.setSize(180,160);
+        pack(); 
+        setLocationRelativeTo(null); 
+        
         
     }
     
