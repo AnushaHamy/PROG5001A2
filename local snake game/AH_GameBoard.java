@@ -21,13 +21,15 @@ import javax.swing.Timer;
 
 public class AH_GameBoard extends JPanel implements ActionListener{    
     
-    private final int B_WIDTH = 400;
-    private final int B_HEIGHT = 400;
+    private final int B_WIDTH = 600;
+    private final int B_HEIGHT = 600;
     
     private final int ALL_DOTS = 1200;
     private final int DOT_SIZE = 30;
     private final int DELAY = 140;
     
+    
+     private final int RAND_POS = 29;
     
     int width;
     int height;
@@ -72,6 +74,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     public void paintComponent(Graphics g) {
      super.paintComponent(g);
      doDrawing(g);
+     //prey.doDrawing(g);
    
     }
     
@@ -130,7 +133,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         }        
     }
     
-        /**
+    /**
      * load the panel to board
      */
      public static void main(String args[]) {
@@ -138,8 +141,9 @@ public class AH_GameBoard extends JPanel implements ActionListener{
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        AH_GameBoard panel = new AH_GameBoard();
        frame.add(panel);
-    
-       //frame.setSize(600, 400);
+       
+       frame.setSize(500, 500);
+       frame.setResizable(false); 
     
        frame.setVisible(true);
     }
@@ -164,20 +168,27 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         timer.start();
     }
     
-     /**
-     * load random apple to board
-     */
-    public void loadRandomApple(){
     
-    }
+    
+        // /**
+     // * locate the prey in random location
+     // */
+        // public void locatePrey() {
+
+        // int r = (int) (Math.random() * RAND_POS);
+        // prey_x = ((r * DOT_SIZE));
+
+        // r = (int) (Math.random() * RAND_POS);
+        // prey_y = ((r * DOT_SIZE));
+    // }
     
           @Override
     public void actionPerformed(ActionEvent e) {
 
         if (inGame) {
 
-            //prey.checkPrey();
-            //checkCollision();
+            checkPrey();
+            checkCollision();
             move();
         }
 
@@ -205,6 +216,36 @@ public class AH_GameBoard extends JPanel implements ActionListener{
 
         if (downDirection) {
             y[0] += DOT_SIZE;
+        }
+    }
+    
+        private void checkCollision() {
+
+        for (int z = dots; z > 0; z--) {
+
+            if ((z > 4) && (x[0] == x[z]) && (y[0] == y[z])) {
+                inGame = false;
+            }
+        }
+
+        if (y[0] >= B_HEIGHT) {
+            inGame = false;
+        }
+
+        if (y[0] < 0) {
+            inGame = false;
+        }
+
+        if (x[0] >= B_WIDTH) {
+            inGame = false;
+        }
+
+        if (x[0] < 0) {
+            inGame = false;
+        }
+        
+        if (!inGame) {
+            timer.stop();
         }
     }
     

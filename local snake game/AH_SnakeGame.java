@@ -28,7 +28,7 @@ public class AH_SnakeGame extends JFrame {
     public AH_SnakeGame() {        
         LayoutManagers();
         setTitle("My Snake Game © Anusha_Hamy");
-        setSize(800,500);
+        //setSize(800,500);
         setResizable(false); 
         pack();
         
@@ -68,7 +68,7 @@ public class AH_SnakeGame extends JFrame {
         SnakeGame.setLayout(layout);
         // use GridBagConstraints to control the grid appearance 
         GridBagConstraints constraints = new GridBagConstraints(); 
-        //board.setSize(200,150);
+        board.setSize(300,300);
         constraints.gridx=0;
         constraints.gridy=0;
         //board.setSize(800,600);

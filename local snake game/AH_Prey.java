@@ -19,8 +19,9 @@ public class AH_Prey extends JPanel{
        
        private int dots;
     
-       private final int DOT_SIZE = 30;
-       private final int RAND_POS = 29;
+      private final int DOT_SIZE = 30;
+      private final int RAND_POS = 14;
+      
     /**
      * Constructor for objects of class Prey
      */
@@ -40,12 +41,16 @@ public class AH_Prey extends JPanel{
      * locate the prey in random location
      */
         public void locatePrey() {
-
+         
+            
         int r = (int) (Math.random() * RAND_POS);
         prey_x = ((r * DOT_SIZE));
 
         r = (int) (Math.random() * RAND_POS);
         prey_y = ((r * DOT_SIZE));
+        
+        
+        
     }
     
        /**
@@ -54,8 +59,10 @@ public class AH_Prey extends JPanel{
     public void doDrawing(Graphics g){
         
         g.drawImage(img, prey_x, prey_y, this);
+        
     
     }
+   
     
 }
 
