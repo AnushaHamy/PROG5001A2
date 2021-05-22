@@ -1,10 +1,13 @@
 #BlueJ class context
 comment0.target=AH_GameBoard
-comment0.text=\r\n\ @author\ Anusha\ Hamy\r\n\ @Version\ 4.0\r\n
+comment0.text=\r\n\ @author\ Anusha\ Hamy\r\n\ @Version\ 5.0\r\n
 comment1.params=
 comment1.target=AH_GameBoard()
 comment10.params=
 comment10.target=void\ checkCollision()
+comment11.params=g
+comment11.target=void\ gameOver(java.awt.Graphics)
+comment11.text=\r\n\ game\ over\r\n
 comment2.params=g
 comment2.target=void\ paintComponent(java.awt.Graphics)
 comment3.params=
@@ -25,4 +28,4 @@ comment8.params=e
 comment8.target=void\ actionPerformed(java.awt.event.ActionEvent)
 comment9.params=
 comment9.target=void\ move()
-numComments=11
+numComments=12

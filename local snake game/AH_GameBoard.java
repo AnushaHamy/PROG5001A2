@@ -16,7 +16,7 @@ import javax.swing.Timer;
 
 /**
  * @author Anusha Hamy
- * @Version 4.0
+ * @Version 5.0
  */
 
 public class AH_GameBoard extends JPanel implements ActionListener{    
@@ -25,11 +25,9 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     private final int B_HEIGHT = 600;
     
     private final int ALL_DOTS = 1200;
-    private final int DOT_SIZE = 30;
     private final int DELAY = 140;
     
     
-     private final int RAND_POS = 29;
     
     int width;
     int height;
@@ -44,11 +42,13 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     private boolean rightDirection = true;
     private boolean upDirection = false;
     private boolean downDirection = false;
-    private boolean inGame = true;
+    private boolean inGame = false;
+    private boolean gamePaused = false;
     
     Color color;  
-    Image img_snake;
+    Image img_head;
     Image img_body;
+    Image img_prey;
   
     private int prey_x;
     private int prey_y;
@@ -74,7 +74,6 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     public void paintComponent(Graphics g) {
      super.paintComponent(g);
      doDrawing(g);
-     //prey.doDrawing(g);
    
     }
     
@@ -86,9 +85,10 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     private void loadPictures(){
     
        prey  = new AH_Prey();
+       img_prey =prey.img;
        
        snake = new AH_Snake();
-       img_snake = snake.img_snake;
+       img_head = snake.img_snake;
        img_body = snake.img_body;
        
     
@@ -98,7 +98,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     
     private void checkPrey() {
         
-        if ((x[0] == prey_x) && (y[0] == prey_y)) {
+        if ((x[0] == prey.prey_x) && (y[0] == prey.prey_y)) {
 
             dots++;
             prey.locatePrey();
@@ -115,21 +115,21 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         if (inGame) {
 
             //load prey
-            prey.doDrawing(g);
-            //snake.paintSnake(g);
+             g.drawImage(img_prey, prey.prey_x, prey.prey_y, this);
+            
             for (int z = 0; z < dots; z++) {
                 if (z == 0) {
-                    g.drawImage(img_snake, x[z], y[z], this);
+                    g.drawImage(img_head, x[z], y[z], this);
                 } else {
                     g.drawImage(img_body, x[z], y[z], this);
                 }
             }
-
+            gamePaused=true;
             Toolkit.getDefaultToolkit().sync();
 
         } else {
 
-            //gameOver(g);
+            gameOver(g);
         }        
     }
     
@@ -142,8 +142,6 @@ public class AH_GameBoard extends JPanel implements ActionListener{
        AH_GameBoard panel = new AH_GameBoard();
        frame.add(panel);
        
-       frame.setSize(500, 500);
-       frame.setResizable(false); 
     
        frame.setVisible(true);
     }
@@ -157,8 +155,8 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         dots = 3;
 
         for (int z = 0; z < dots; z++) {
-            x[z] = 50 - z * 10;
-            y[z] = 50;
+            x[z] = 40 - z * 1;
+            y[z] = 40;
         }
         
         //AH_Prey prey = new Prey();
@@ -170,17 +168,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     
     
     
-        // /**
-     // * locate the prey in random location
-     // */
-        // public void locatePrey() {
-
-        // int r = (int) (Math.random() * RAND_POS);
-        // prey_x = ((r * DOT_SIZE));
-
-        // r = (int) (Math.random() * RAND_POS);
-        // prey_y = ((r * DOT_SIZE));
-    // }
+       
     
           @Override
     public void actionPerformed(ActionEvent e) {
@@ -203,19 +191,19 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         }
 
         if (leftDirection) {
-            x[0] -= DOT_SIZE;
+            x[0] -= prey.DOT_SIZE;
         }
 
         if (rightDirection) {
-            x[0] += DOT_SIZE;
+            x[0] += prey.DOT_SIZE;
         }
 
         if (upDirection) {
-            y[0] -= DOT_SIZE;
+            y[0] -= prey.DOT_SIZE;
         }
 
         if (downDirection) {
-            y[0] += DOT_SIZE;
+            y[0] += prey.DOT_SIZE;
         }
     }
     
@@ -247,6 +235,35 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         if (!inGame) {
             timer.stop();
         }
+    }
+    
+        /**
+     * game over
+     */
+        private void gameOver(Graphics g) {
+         
+             if (gamePaused=!gamePaused){
+             String msg_2 = "Press Space Bar to Start the Game!!";
+             Font small = new Font("Helvetica", Font.BOLD, 16);
+             FontMetrics metr = getFontMetrics(small);
+             g.setColor(Color.white);
+             g.setFont(small);
+             g.drawString(msg_2, (B_WIDTH - metr.stringWidth(msg_2)) / 2, B_HEIGHT / 2);
+             gamePaused=false;
+            
+            }else {
+              String msg_3 = "Game Over";
+              Font small = new Font("Helvetica", Font.BOLD, 14);
+              FontMetrics metr = getFontMetrics(small);
+        
+              g.setColor(Color.white);
+              g.setFont(small);
+              g.drawString(msg_3, (B_WIDTH - metr.stringWidth(msg_3)) / 2, B_HEIGHT / 2);
+            
+            }
+        
+       
+       
     }
     
     /**
@@ -282,6 +299,20 @@ public class AH_GameBoard extends JPanel implements ActionListener{
                 rightDirection = false;
                 leftDirection = false;
             }
+            
+                 if(key == KeyEvent.VK_SPACE){
+                
+                     if (inGame) {//If the game is over, press the space bar to restart the game
+                     gamePaused = false;
+                     inGame = false;
+
+                      
+                    } else {
+                     inGame = !inGame;//If the game is not over, press the space to pause, press the space again to resume
+                     gamePaused=true;
+                    }
+                 
+                }
         }
     }
 }

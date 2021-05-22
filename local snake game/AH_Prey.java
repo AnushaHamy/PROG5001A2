@@ -9,17 +9,17 @@ import javax.swing.JFrame;
  * Class Prey represents any prey object.
  *
  * @author Anusha Hamy
- * @version 4.0
+ * @version 5.0
  */
 public class AH_Prey extends JPanel{
     
        Image img;
-       private int prey_x;
-       private int prey_y;
+        int prey_x;
+        int prey_y;
        
        private int dots;
     
-      private final int DOT_SIZE = 30;
+       int DOT_SIZE = 40;
       private final int RAND_POS = 14;
       
     /**
@@ -27,15 +27,9 @@ public class AH_Prey extends JPanel{
      */
     public AH_Prey()
     {
-         img = new ImageIcon("images/prey.jpg").getImage();
+         img = new ImageIcon("images/prey.png").getImage();
     }   
     
-    /**
-     * load prey random in board
-     */
-    public void addPreyRandom(){
-    
-    }
     
     /**
      * locate the prey in random location
@@ -53,7 +47,7 @@ public class AH_Prey extends JPanel{
         
     }
     
-       /**
+    /**
      * load prey random in board
      */
     public void doDrawing(Graphics g){

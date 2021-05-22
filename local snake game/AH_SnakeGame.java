@@ -10,13 +10,12 @@ import javax.swing.ImageIcon;
 
 /**
  * @author Anusha Hamy
- * @Version 4.0
+ * @Version 5.0
  */
 
 public class AH_SnakeGame extends JFrame {
     
     private AH_LoginForm loginForm;
-    //private AH_Snake snake;
     private AH_GameBoard board;
     private JLabel labelTopScore; 
     private JLabel labelCurrentScore; 
@@ -28,7 +27,6 @@ public class AH_SnakeGame extends JFrame {
     public AH_SnakeGame() {        
         LayoutManagers();
         setTitle("My Snake Game © Anusha_Hamy");
-        //setSize(800,500);
         setResizable(false); 
         pack();
         
@@ -37,7 +35,7 @@ public class AH_SnakeGame extends JFrame {
     public static void main(String[] args) {    
         
         EventQueue.invokeLater(() -> {
-          //create the game with a game title as follow: The Snake Game (C) Your_Name
+        //create the game with a game title as follow: The Snake Game (C) Your_Name
           AH_LoginForm loginForm = new AH_LoginForm();
           loginForm.setVisible(true);
           loginForm.setTitle("The Snake Game © Anusha_Hamy");
@@ -52,13 +50,11 @@ public class AH_SnakeGame extends JFrame {
         labelTopScore = new JLabel("Top Player's Score "); 
         labelCurrentScore = new JLabel("Current Players Score ");
         labelname = new JLabel("PROG5001:"+ '\n'+" 2021 name: Anusha");//
-        imageSnake = new ImageIcon ("images/snake.jpg");
+        imageSnake = new ImageIcon ("images/snake.pg");
         labelimg = new JLabel (imageSnake);
         buttonQuit = new JButton("Quit");
     
-        //AH_SnakeGame Game = new AH_SnakeGame();
-        
-        //Color color;
+       
         JPanel SnakeGame = new JPanel();
         //add game to panel;
         AH_GameBoard board = new AH_GameBoard();
@@ -71,39 +67,28 @@ public class AH_SnakeGame extends JFrame {
         board.setSize(300,300);
         constraints.gridx=0;
         constraints.gridy=0;
-        //board.setSize(800,600);
         constraints.gridwidth = 6;
         constraints.gridheight= 9;
         constraints.fill = GridBagConstraints.BOTH;
         SnakeGame.add(board, constraints);
         
 
-
-        //constraints.fill = GridBagConstraints.VERTICAL;
-        //constraints.fill = GridBagConstraints.HORIZONTAL;
-         constraints.gridx=9;
-         constraints.gridy=1;
+        constraints.gridx=9;
+        constraints.gridy=1;
         constraints.gridheight=1;
         constraints.gridwidth = 2;
-        //constraints.insets = new Insets(0,2,0,0);
-        //constraints.anchor = GridBagConstraints.CENTER;
-      
         SnakeGame.add(labelTopScore,constraints);
         
 
-        
-        //constraints.fill = GridBagConstraints.VERTICAL;
-        //constraints.anchor = GridBagConstraints.LINE_START;
         constraints.anchor = GridBagConstraints.CENTER;
         constraints.gridx = 9; 
         constraints.gridy = 2; 
         constraints.gridheight=1;
         constraints.gridwidth = 2;
-        //constraints.weightx = 0.2;
         constraints.weighty = 0.1;
         SnakeGame.add(labelCurrentScore, constraints);
         
-        //constraints.fill = GridBagConstraints.LAST_LINE_END;
+
         constraints.gridx = 9; 
         constraints.gridy = 3;      
         SnakeGame.add(labelimg, constraints);
@@ -115,10 +100,7 @@ public class AH_SnakeGame extends JFrame {
         constraints.gridwidth = 4;
         SnakeGame.add(labelname, constraints);
         
-        //constraints.fill = GridBagConstraints.VERTICAL;
-     
-        //constraints.fill = GridBagConstraints.VERTICAL;
-        // // //constraints.weightx=50;
+  
         constraints.anchor = GridBagConstraints.CENTER;
         constraints.gridx = 9; 
         constraints.gridy = 8;  
@@ -133,25 +115,7 @@ public class AH_SnakeGame extends JFrame {
         
     }
     
-     /**
-     * load snake to board
-     */
-    public void setSnake(){
+   
     
-    }
-    
-    /**
-     * Get moving directons of snake
-     */
-    public void setDirection(){
-    
-    }
-    
-    
-     /**
-     * set game over if snake hit the wall
-     */
-    public void setGameOver(){
-    
-    }
+   
 }

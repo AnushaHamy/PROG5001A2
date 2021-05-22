@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
  * Write a description of class Snake here.
  *
  * @author Anusha Hamy
- * @version 4.0
+ * @version 5.0
  */
 public class AH_Snake
 {
@@ -22,24 +22,5 @@ public class AH_Snake
         img_body = new ImageIcon("images/body.png").getImage();
     }
 
-    /**
-     * Snake grow
-     */
-    public void grow(){
-    
-    }
-    
-    /**
-     * snake move
-     */
-    public void move(){
-    
-    }
-    
-    /**
-     * Check snake is collide with wall
-     */
-    public void checkCollision(){
-    
-    }
+
 }
