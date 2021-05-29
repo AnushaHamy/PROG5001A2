@@ -13,10 +13,19 @@ import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 import java.awt.Container;
 import javax.swing.Timer;
+import javax.swing.JLabel;
+
+import javax.swing.JOptionPane;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 /**
  * @author Anusha Hamy
- * @Version 5.0
+ * @Version 6.0
  */
 
 public class AH_GameBoard extends JPanel implements ActionListener{    
@@ -27,10 +36,8 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     private final int ALL_DOTS = 1200;
     private final int DELAY = 140;
     
-    
-    
-    int width;
-    int height;
+    private int width;
+    private int height;
     
     private int dots;
     private Timer timer;
@@ -46,9 +53,9 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     private boolean gamePaused = false;
     
     Color color;  
-    Image img_head;
-    Image img_body;
-    Image img_prey;
+    private Image img_head;
+    private Image img_body;
+    private Image img_prey;
   
     private int prey_x;
     private int prey_y;
@@ -56,6 +63,12 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     private AH_Snake snake;
     private AH_Prey prey;
     
+    private int score;
+    private String highScore = "";
+    private int highSc, high;
+    
+    JLabel currScore;
+    JLabel hScore;
      
     public AH_GameBoard() {
         addKeyListener(new TAdapter());
@@ -65,6 +78,10 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         setPreferredSize(new Dimension(B_WIDTH,B_HEIGHT));  
         loadPictures();
         initGame();
+        
+        //checkScore;
+        currScore = new JLabel("Score Game"+score);
+        hScore = new JLabel("Score Game"+highScore);
     }
     
   
@@ -74,6 +91,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     public void paintComponent(Graphics g) {
      super.paintComponent(g);
      doDrawing(g);
+     loadScore(g);
    
     }
     
@@ -91,8 +109,6 @@ public class AH_GameBoard extends JPanel implements ActionListener{
        img_head = snake.img_snake;
        img_body = snake.img_body;
        
-    
-    
     }
     
     
@@ -102,11 +118,131 @@ public class AH_GameBoard extends JPanel implements ActionListener{
 
             dots++;
             prey.locatePrey();
+            
+             //score
+                //checkScore();
+                 score +=10; 
+            
         }
         
     }
     
     
+    ////This algorithm developed by using this tutorial
+    // https://www.youtube.com/watch?v=8gMd0ftWp_Y
+        public void checkScore(){
+         
+        highSc = Integer.parseInt(highScore.split(":")[1]);
+        if(highScore.equals(""))
+           return;
+           
+        if(high > highSc){
+            
+           // Integer.parseInt(highScore.split(":")[1])
+        
+              String name = JOptionPane.showInputDialog("You set a new high score, what is your name");
+              highScore = name + ":" + score;
+          
+              File scoreFile = new File("file/highscore.txt");
+              if(!scoreFile.exists()){
+              
+                  try{
+                       scoreFile.createNewFile();
+                      }catch (Exception e){
+                         e.printStackTrace();
+                  }
+                  
+                  FileWriter writeFile = null;
+                  BufferedWriter writer = null;
+                
+                  try{
+                    
+                      writeFile = new  FileWriter(scoreFile);
+                      writer = new BufferedWriter(writeFile);
+                      writer.write(this.highScore);
+                
+                      }catch(Exception e){
+                    
+                      //return ("Nobody:0");
+                      }
+                      finally{
+                    
+                       try{
+                           if(writer != null)
+                           writer.close();
+                        
+                          }catch(Exception e){
+                            //e.printStackTrace();
+                            System.out.println(e);
+                          }
+                
+                }
+                
+           }else if (scoreFile.exists()){
+             FileWriter writeFile = null;
+                  BufferedWriter writer = null;
+                
+                  try{
+                    
+                      writeFile = new  FileWriter(scoreFile);
+                      writer = new BufferedWriter(writeFile);
+                      writer.write(this.highScore);
+                
+                      }catch(Exception e){
+                    
+                      //return ("Nobody:0");
+                      }
+                      
+                      finally{
+                    
+                       try{
+                           if(writer != null)
+                           writer.close();
+                        
+                          }catch(Exception e){
+                            //e.printStackTrace();
+                            System.out.println(e);
+                          }
+                
+                }
+            }
+           
+        }
+    
+    }
+    
+    ////This algorithm developed by using this tutorial
+    //// https://www.youtube.com/watch?v=8gMd0ftWp_Y
+    
+    public String highScore(){
+        //sc=score;
+        FileReader readFile = null;
+        BufferedReader reader = null;
+        
+        try{
+         readFile = new FileReader("file/highscore.txt");
+        reader = new BufferedReader(readFile);
+        return reader.readLine();
+        }
+        catch (Exception e){
+        return "Nobody:0";
+    
+       }
+       finally{
+          try{
+            if(reader !=null)
+               reader.close();
+            
+          }catch(IOException e){
+             ///return e;//e.printStackTrace();
+              System.out.println(e);
+          }
+    
+      }            
+       
+     }
+     
+     
     /**
      * draw the snake and prey
      */
@@ -114,6 +250,8 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         
         if (inGame) {
 
+            loadScore(g);
+            
             //load prey
              g.drawImage(img_prey, prey.prey_x, prey.prey_y, this);
             
@@ -126,6 +264,11 @@ public class AH_GameBoard extends JPanel implements ActionListener{
             }
             gamePaused=true;
             Toolkit.getDefaultToolkit().sync();
+            
+            if(highScore.equals("")){
+              //initialize the high score
+              highScore = this.highScore();
+            }
 
         } else {
 
@@ -147,7 +290,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     }
 
     
-        /**
+    /**
      * change the snake and prey
      */
       private void initGame() {
@@ -207,33 +350,47 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         }
     }
     
+    public void loadScore(Graphics g){
+             
+              currScore.setText("The Corrent Score: "+score);
+              hScore.setText("The Top Score: "+highScore);
+        }
+    
         private void checkCollision() {
+            
+            high = score;
 
         for (int z = dots; z > 0; z--) {
 
             if ((z > 4) && (x[0] == x[z]) && (y[0] == y[z])) {
                 inGame = false;
+                
             }
         }
 
         if (y[0] >= B_HEIGHT) {
             inGame = false;
+            checkScore();
         }
 
         if (y[0] < 0) {
             inGame = false;
+            checkScore();
         }
 
         if (x[0] >= B_WIDTH) {
             inGame = false;
+            checkScore();
         }
 
         if (x[0] < 0) {
             inGame = false;
+            checkScore();
         }
         
         if (!inGame) {
             timer.stop();
+            checkScore();
         }
     }
     

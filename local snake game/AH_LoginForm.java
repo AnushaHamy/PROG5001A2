@@ -19,7 +19,6 @@ import java.util.Scanner;
 import java.io.File;
 
 /**
- * JFrame and LayoutManager.
  * @author Anusha Hamy
  * @Version 1.0
  */
@@ -34,7 +33,7 @@ public class AH_LoginForm extends JFrame implements ActionListener{
     private AH_PlayerList playerList;
     
     public AH_LoginForm() {
-        
+         //this form implemented according to Vinh's workshop
         labelUsername = new JLabel("Enter username: ");
         labelPassword = new JLabel("Enter password: ");   
         textUsername = new JTextField(20);
@@ -45,38 +44,38 @@ public class AH_LoginForm extends JFrame implements ActionListener{
         
         GridBagLayout layout = new GridBagLayout();
         loginPanel.setLayout(layout);
-        GridBagConstraints gbc = new GridBagConstraints();
+        GridBagConstraints gridbaglayout = new GridBagConstraints();
         
         int top = 5;
         int left = 5;
         int bottom = 5;
         int right = 5;
-        gbc.insets = new Insets(top, left, bottom, right);
+        gridbaglayout.insets = new Insets(top, left, bottom, right);
         
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        loginPanel.add(labelUsername, gbc);
+        gridbaglayout.gridx = 0;
+        gridbaglayout.gridy = 0;
+        loginPanel.add(labelUsername, gridbaglayout);
 
-        gbc.gridx = 0;
-        gbc.gridy = 1;     
-        loginPanel.add(labelPassword, gbc);
+        gridbaglayout.gridx = 0;
+        gridbaglayout.gridy = 1;     
+        loginPanel.add(labelPassword, gridbaglayout);
          
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.gridwidth = 2;
-        loginPanel.add(textUsername, gbc);
+        gridbaglayout.fill = GridBagConstraints.HORIZONTAL;
+        gridbaglayout.gridx = 1;
+        gridbaglayout.gridy = 0;
+        gridbaglayout.gridwidth = 2;
+        loginPanel.add(textUsername, gridbaglayout);
          
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.gridwidth = 2;
-        loginPanel.add(fieldPassword, gbc);
+        gridbaglayout.fill = GridBagConstraints.HORIZONTAL;
+        gridbaglayout.gridx = 1;
+        gridbaglayout.gridy = 1;
+        gridbaglayout.gridwidth = 2;
+        loginPanel.add(fieldPassword, gridbaglayout);
         
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        gbc.gridwidth = 1;
-        loginPanel.add(buttonLogin, gbc);
+        gridbaglayout.gridx = 1;
+        gridbaglayout.gridy = 2;
+        gridbaglayout.gridwidth = 1;
+        loginPanel.add(buttonLogin, gridbaglayout);
                   
         
         setLayout(new FlowLayout());
@@ -87,10 +86,7 @@ public class AH_LoginForm extends JFrame implements ActionListener{
         
         buttonLogin.addActionListener(this); 
         
-        //add new players to the list
-        //playerList = new AH_PlayerList();
-        //playerList.add("Vinh", "122");
-        //playerList.add("Atie", "Adm1n");
+
         
         playerList = new AH_PlayerList();
         try{
@@ -131,7 +127,6 @@ public class AH_LoginForm extends JFrame implements ActionListener{
         if(matched){
           JOptionPane.showMessageDialog(null, "Login Successful");
           AH_SnakeGame board = new AH_SnakeGame();
-          //board.LayoutManagers();
           board.setVisible(true);
 
         }else{
@@ -145,11 +140,5 @@ public class AH_LoginForm extends JFrame implements ActionListener{
     public static void main(String[] args) {
        AH_LoginForm logpanel = new AH_LoginForm();
        logpanel.setVisible(true);
-       
-       //JFrame frame = new JFrame("Demo Login");
-       //frame.add(logpanel);
-       //frame.pack();
-       //frame.
-       //frame.
     }
 }

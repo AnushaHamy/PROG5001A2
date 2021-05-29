@@ -11,8 +11,10 @@ again. 
 -----------------------------------------------------------------------------
 
 PROJECT TITLE: The Snake Game
-PURPOSE OF PROJECT: Assignment 2 Weekly task 5 - Week 12
-VERSION : 5.0
+PURPOSE OF PROJECT: Assignment 2 Weekly task 6 - Week 13
+VERSION : 6.0
 HOW TO START THIS PROJECT: run the login form
 AUTHORS:Anusha Hamy - 23594256
 USER INSTRUCTIONS: Enter the username & password 
+
+Youtube link: https://youtu.be/peVgPzkU20c

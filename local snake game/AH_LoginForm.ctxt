@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=AH_LoginForm
-comment0.text=\r\n\ JFrame\ and\ LayoutManager.\r\n\ @author\ Anusha\ Hamy\r\n\ @Version\ 1.0\r\n
+comment0.text=\r\n\ @author\ Anusha\ Hamy\r\n\ @Version\ 1.0\r\n
 comment1.params=
 comment1.target=AH_LoginForm()
 comment2.params=fileName
