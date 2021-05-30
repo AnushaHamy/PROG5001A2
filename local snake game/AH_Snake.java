@@ -23,6 +23,9 @@ public class AH_Snake
           loadSnake();
     }
 
+    /**
+     * load images of the snake
+     */
     public void loadSnake(){
            
            

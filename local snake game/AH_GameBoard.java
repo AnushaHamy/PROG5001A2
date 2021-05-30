@@ -99,7 +99,9 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     
     }
     
-    
+    /**
+     * check snake has eaten the apple
+     */
     private void checkPrey() {
         
         if ((x[0] == prey.prey_x) && (y[0] == prey.prey_y)) {
@@ -112,10 +114,13 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         
     }
     
+    /**
+     * Check score and save the top score in file
+     * This algorithm developed by using this tutorial
+     * https://www.youtube.com/watch?v=8gMd0ftWp_Y
+     */
     
-    ////This algorithm developed by using this tutorial
-    // https://www.youtube.com/watch?v=8gMd0ftWp_Y
-        public void checkScore(){
+    public void checkScore(){
          
         highSc = Integer.parseInt(highScore.split(":")[1]);
         if(highScore.equals(""))
@@ -198,9 +203,11 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     
     }
     
-    ////This algorithm developed by using this tutorial
-    //// https://www.youtube.com/watch?v=8gMd0ftWp_Y
-    
+    /**
+     *get the score from the file if not declare it as Nobod 
+     *This algorithm developed by using this tutorial
+     *https://www.youtube.com/watch?v=8gMd0ftWp_Y
+     */
     public String highScore(){
         //sc=score;
         FileReader readFile = null;
@@ -251,6 +258,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
                 }
             }
             gamePaused=true;
+            //draw smoother
             Toolkit.getDefaultToolkit().sync();
             
             if(highScore.equals("")){
@@ -265,7 +273,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     }
     
     /**
-     * change the snake and prey
+     * initialise the snake and prey location
      */
       private void initGame() {
 
@@ -276,9 +284,9 @@ public class AH_GameBoard extends JPanel implements ActionListener{
             y[z] = 40;
         }
         
-        //AH_Prey prey = new Prey();
         prey.locatePrey();
-
+        
+        //refresh the gameboard (repaint)
         timer = new Timer(DELAY,this);
         timer.start();
     }
@@ -297,6 +305,9 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         repaint();
     }
     
+    /**
+     * move the snake
+     */
         private void move() {
 
         for (int z = dots; z > 0; z--) {
@@ -321,12 +332,18 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         }
     }
     
+    /**
+     * load score and highscore in board and call in AH_SnakeGame
+     */
     public void loadScore(Graphics g){
              
               currScore.setText("The Corrent Score: "+score);
               hScore.setText("The Top Score: "+highScore);
         }
     
+    /**
+     * Check collision
+     */
         private void checkCollision() {
             
             high = score;
@@ -366,7 +383,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     }
     
     /**
-     * game over
+     * print game over and pause
      */
         private void gameOver(Graphics g) {
          

@@ -32,6 +32,9 @@ public class AH_Prey extends JPanel{
          loadPrey();
     }   
     
+    /**
+     * load image of prey
+     */
     public void loadPrey(){
     
       img_prey = new ImageIcon("images/prey.png").getImage();
@@ -55,7 +58,7 @@ public class AH_Prey extends JPanel{
     }
     
     /**
-     * load prey random in board
+     * draw prey in board
      */
     public void doDrawing(Graphics g){
         
