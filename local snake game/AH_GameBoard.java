@@ -265,20 +265,6 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     }
     
     /**
-     * load the panel to board
-     */
-     public static void main(String args[]) {
-       JFrame frame = new JFrame("My Snake Game");
-       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       AH_GameBoard panel = new AH_GameBoard();
-       frame.add(panel);
-       
-    
-       frame.setVisible(true);
-    }
-
-    
-    /**
      * change the snake and prey
      */
       private void initGame() {
