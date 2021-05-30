@@ -53,9 +53,6 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     private boolean gamePaused = false;
     
     Color color;  
-    private Image img_head;
-    private Image img_body;
-    private Image img_prey;
   
     private int prey_x;
     private int prey_y;
@@ -84,9 +81,6 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         hScore = new JLabel("Score Game"+highScore);
     }
     
-  
-
-    
     @Override
     public void paintComponent(Graphics g) {
      super.paintComponent(g);
@@ -95,20 +89,14 @@ public class AH_GameBoard extends JPanel implements ActionListener{
    
     }
     
-    
-    
     /**
      * load the objects from AH_Snake and AH_Prey class
      */
     private void loadPictures(){
     
        prey  = new AH_Prey();
-       img_prey =prey.img;
-       
        snake = new AH_Snake();
-       img_head = snake.img_snake;
-       img_body = snake.img_body;
-       
+    
     }
     
     
@@ -118,10 +106,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
 
             dots++;
             prey.locatePrey();
-            
-             //score
-                //checkScore();
-                 score +=10; 
+            score +=10; 
             
         }
         
@@ -144,7 +129,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
               highScore = name + ":" + score;
           
               File scoreFile = new File("file/highscore.txt");
-              if(!scoreFile.exists()){
+               if(!scoreFile.exists()){
               
                   try{
                        scoreFile.createNewFile();
@@ -155,7 +140,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
                   FileWriter writeFile = null;
                   BufferedWriter writer = null;
                 
-                  try{
+                   try{
                     
                       writeFile = new  FileWriter(scoreFile);
                       writer = new BufferedWriter(writeFile);
@@ -168,6 +153,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
                       finally{
                     
                        try{
+                           
                            if(writer != null)
                            writer.close();
                         
@@ -176,10 +162,10 @@ public class AH_GameBoard extends JPanel implements ActionListener{
                             System.out.println(e);
                           }
                 
-                }
+                    }
                 
-           }else if (scoreFile.exists()){
-             FileWriter writeFile = null;
+            }else if (scoreFile.exists()){
+                FileWriter writeFile = null;
                   BufferedWriter writer = null;
                 
                   try{
@@ -204,7 +190,8 @@ public class AH_GameBoard extends JPanel implements ActionListener{
                             System.out.println(e);
                           }
                 
-                }
+                 }
+                 
             }
            
         }
@@ -229,6 +216,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     
        }
        finally{
+           
           try{
             if(reader !=null)
                reader.close();
@@ -253,13 +241,13 @@ public class AH_GameBoard extends JPanel implements ActionListener{
             loadScore(g);
             
             //load prey
-             g.drawImage(img_prey, prey.prey_x, prey.prey_y, this);
+             g.drawImage(prey.img_prey, prey.prey_x, prey.prey_y, this);
             
             for (int z = 0; z < dots; z++) {
                 if (z == 0) {
-                    g.drawImage(img_head, x[z], y[z], this);
+                    g.drawImage(snake.img_snake, x[z], y[z], this);
                 } else {
-                    g.drawImage(img_body, x[z], y[z], this);
+                    g.drawImage(snake.img_body, x[z], y[z], this);
                 }
             }
             gamePaused=true;
@@ -310,10 +298,7 @@ public class AH_GameBoard extends JPanel implements ActionListener{
     }
     
     
-    
-       
-    
-          @Override
+    @Override
     public void actionPerformed(ActionEvent e) {
 
         if (inGame) {
@@ -394,33 +379,33 @@ public class AH_GameBoard extends JPanel implements ActionListener{
         }
     }
     
-        /**
+    /**
      * game over
      */
         private void gameOver(Graphics g) {
          
-             if (gamePaused=!gamePaused){
-             String msg_2 = "Press Space Bar to Start the Game!!";
-             Font small = new Font("Helvetica", Font.BOLD, 16);
-             FontMetrics metr = getFontMetrics(small);
-             g.setColor(Color.white);
-             g.setFont(small);
-             g.drawString(msg_2, (B_WIDTH - metr.stringWidth(msg_2)) / 2, B_HEIGHT / 2);
-             gamePaused=false;
+        if (gamePaused=!gamePaused){
             
-            }else {
-              String msg_3 = "Game Over";
-              Font small = new Font("Helvetica", Font.BOLD, 14);
-              FontMetrics metr = getFontMetrics(small);
-        
-              g.setColor(Color.white);
-              g.setFont(small);
-              g.drawString(msg_3, (B_WIDTH - metr.stringWidth(msg_3)) / 2, B_HEIGHT / 2);
+            String msg_2 = "Press Space Bar to Start the Game!!";
+            Font small = new Font("Helvetica", Font.BOLD, 16);
+            FontMetrics metr = getFontMetrics(small);
+            g.setColor(Color.white);
+            g.setFont(small);
+            g.drawString(msg_2, (B_WIDTH - metr.stringWidth(msg_2)) / 2, B_HEIGHT / 2);
+            gamePaused=false;
             
-            }
+        }else {
+            
+            String msg_3 = "Game Over";
+            Font small = new Font("Helvetica", Font.BOLD, 14);
+            FontMetrics metr = getFontMetrics(small);
         
-       
-       
+            g.setColor(Color.white);
+            g.setFont(small);
+            g.drawString(msg_3, (B_WIDTH - metr.stringWidth(msg_3)) / 2, B_HEIGHT / 2);
+            
+        }
+    
     }
     
     /**
@@ -428,10 +413,10 @@ public class AH_GameBoard extends JPanel implements ActionListener{
      */
       private class TAdapter extends KeyAdapter {
 
-        @Override
-        public void keyPressed(KeyEvent e) {
+    @Override
+    public void keyPressed(KeyEvent e) {
 
-            int key = e.getKeyCode();
+        int key = e.getKeyCode();
 
             if ((key == KeyEvent.VK_LEFT) && (!rightDirection)) {
                 leftDirection = true;
@@ -457,15 +442,16 @@ public class AH_GameBoard extends JPanel implements ActionListener{
                 leftDirection = false;
             }
             
-                 if(key == KeyEvent.VK_SPACE){
+            //Pause the game with space bar
+            if(key == KeyEvent.VK_SPACE){
                 
-                     if (inGame) {//If the game is over, press the space bar to restart the game
+                 if (inGame) {//if in game, to pause the game
                      gamePaused = false;
                      inGame = false;
 
                       
                     } else {
-                     inGame = !inGame;//If the game is not over, press the space to pause, press the space again to resume
+                     inGame = !inGame;
                      gamePaused=true;
                     }
                  

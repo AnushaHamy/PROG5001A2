@@ -13,23 +13,30 @@ import javax.swing.JFrame;
  */
 public class AH_Prey extends JPanel{
     
-       Image img;
-        int prey_x;
-        int prey_y;
+    Image img_prey;
+    int prey_x;
+    int prey_y;
        
-       private int dots;
     
-       int DOT_SIZE = 40;
-      private final int RAND_POS = 14;
+    
+    int DOT_SIZE = 40;
+    private int dots;
+    private final int RAND_POS = 14;
       
     /**
      * Constructor for objects of class Prey
      */
     public AH_Prey()
     {
-         img = new ImageIcon("images/prey.png").getImage();
+         
+         loadPrey();
     }   
     
+    public void loadPrey(){
+    
+      img_prey = new ImageIcon("images/prey.png").getImage();
+    
+    }
     
     /**
      * locate the prey in random location
@@ -52,7 +59,7 @@ public class AH_Prey extends JPanel{
      */
     public void doDrawing(Graphics g){
         
-        g.drawImage(img, prey_x, prey_y, this);
+        g.drawImage(img_prey, prey_x, prey_y, this);
         
     
     }

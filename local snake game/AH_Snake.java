@@ -18,9 +18,20 @@ public class AH_Snake
      */
     public AH_Snake() {
         // initialise instance variables     
-          img_snake = new ImageIcon("images/head.png").getImage();
-        img_body = new ImageIcon("images/body.png").getImage();
+          //img_snake = new ImageIcon("images/head.png").getImage();
+          //img_body = new ImageIcon("images/body.png").getImage();
+          loadSnake();
     }
 
+    public void loadSnake(){
+           
+           
+          img_snake = new ImageIcon("images/head.png").getImage();
+          img_body = new ImageIcon("images/body.png").getImage();
+    
+      
+    
+    }
+    
 
 }
